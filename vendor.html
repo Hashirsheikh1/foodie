@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vendor Dashboard - QuickBite</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <!-- Loading Overlay -->
+    <!-- <div class="loading-overlay" id="loading-overlay">
+    <div class="spinner"></div>
+  </div> -->
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar"></nav>
+
+    <main
+      class="section"
+      style="max-width: 1200px; margin: 0 auto"
+      id="vendor-content"
+    >
+      <div class="dashboard-header">
+        <h1>Vendor Dashboard</h1>
+        <p>Manage your food items and track orders</p>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon pink">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
+              <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
+              <line x1="6" y1="1" x2="6" y2="4" />
+              <line x1="10" y1="1" x2="10" y2="4" />
+              <line x1="14" y1="1" x2="14" y2="4" />
+            </svg>
+          </div>
+          <div class="stat-label">My Foods</div>
+          <div class="stat-value" id="stat-foods">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon orange">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <rect x="1" y="3" width="15" height="13" />
+              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+              <circle cx="5.5" cy="18.5" r="2.5" />
+              <circle cx="18.5" cy="18.5" r="2.5" />
+            </svg>
+          </div>
+          <div class="stat-label">Orders</div>
+          <div class="stat-value" id="stat-orders">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon green">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="12" y1="1" x2="12" y2="23" />
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+            </svg>
+          </div>
+          <div class="stat-label">Revenue</div>
+          <div class="stat-value" id="stat-revenue">$0.00</div>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="foods-tab">My Foods</button>
+        <button class="tab-btn" data-tab="orders-tab">Orders</button>
+      </div>
+
+      <!-- Foods Tab -->
+      <div class="tab-content active" id="foods-tab">
+        <!-- Add Food Form -->
+        <div
+          class="card"
+          style="
+            margin-bottom: 24px;
+            padding: 24px;
+            border: 1px solid var(--border);
+          "
+        >
+          <h3 style="margin-bottom: 16px; font-size: 1.1rem; font-weight: 700">
+            Add New Food
+          </h3>
+          <form id="food-form">
+            <div
+              style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 16px;
+              "
+            >
+              <div class="form-group" style="margin-bottom: 0">
+                <label for="food-name">Food Name</label>
+                <input
+                  type="text"
+                  id="food-name"
+                  placeholder="e.g. Margherita Pizza"
+                  required
+                />
+              </div>
+              <div class="form-group" style="margin-bottom: 0">
+                <label for="food-price">Price ($)</label>
+                <input
+                  type="number"
+                  id="food-price"
+                  placeholder="12.99"
+                  step="0.01"
+                  min="0.01"
+                  required
+                />
+              </div>
+              <div class="form-group" style="margin-bottom: 0">
+                <label for="food-category">Category</label>
+                <select id="food-category" required></select>
+              </div>
+            </div>
+            <div class="form-group" style="margin-top: 16px">
+              <label for="food-desc">Description</label>
+              <input
+                type="text"
+                id="food-desc"
+                placeholder="A short description of your food..."
+                required
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">Add Food</button>
+          </form>
+        </div>
+
+        <!-- My Foods Grid -->
+        <div class="food-grid" id="my-foods-grid"></div>
+
+        <div class="empty-state hidden" id="empty-foods">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
+            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
+            <line x1="6" y1="1" x2="6" y2="4" />
+            <line x1="10" y1="1" x2="10" y2="4" />
+            <line x1="14" y1="1" x2="14" y2="4" />
+          </svg>
+          <h3>No food items yet</h3>
+          <p>Use the form above to add your first food item.</p>
+        </div>
+      </div>
+
+      <!-- Orders Tab -->
+      <div class="tab-content" id="orders-tab">
+        <div id="vendor-orders">
+          <div class="empty-state">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <rect x="1" y="3" width="15" height="13" />
+              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+            </svg>
+            <h3>Loading orders...</h3>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script type="module" src="./js/vendor.js"></script>
+  </body>
+</html>

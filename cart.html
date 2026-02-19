@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart - QuickBite</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loading-overlay">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar"></nav>
+
+  <main class="section" style="max-width:800px; margin:0 auto;">
+    <div class="dashboard-header">
+      <h1>Your Cart</h1>
+      <p>Review your items before placing an order</p>
+    </div>
+
+    <!-- Empty State -->
+    <div class="empty-state hidden" id="empty-cart">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+      </svg>
+      <h3>Your cart is empty</h3>
+      <p>Browse our menu and add some delicious items!</p>
+      <a href="/customer.html" class="btn btn-primary">Browse Foods</a>
+    </div>
+
+    <!-- Cart Items -->
+    <div class="card" style="border:1px solid var(--border);">
+      <div id="cart-items"></div>
+    </div>
+
+    <!-- Cart Summary -->
+    <div class="cart-summary hidden" id="cart-summary">
+      <div class="cart-summary-row">
+        <span>Subtotal</span>
+        <span id="subtotal">$0.00</span>
+      </div>
+      <div class="cart-summary-row">
+        <span>Delivery Fee</span>
+        <span id="delivery-fee">$2.99</span>
+      </div>
+      <div class="cart-summary-row total">
+        <span>Total</span>
+        <span id="total">$0.00</span>
+      </div>
+    </div>
+
+    <button class="btn btn-primary btn-lg hidden" style="width:100%; margin-top:20px;" id="checkout-btn">
+      Place Order
+    </button>
+  </main>
+
+  <script type="module">
+    import { initCart } from "./js/cart.js";
+    initCart();
+  </script>
+</body>
+</html>

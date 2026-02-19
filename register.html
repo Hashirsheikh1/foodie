@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - QuickBite</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="navbar" id="navbar"></nav>
+
+  <main class="auth-page">
+    <div class="auth-card">
+      <h1>Create Account</h1>
+      <p class="auth-subtitle">Join QuickBite to start ordering</p>
+
+      <div id="error-alert" class="alert alert-error hidden"></div>
+
+      <form id="register-form">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" placeholder="John Doe" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="you@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="At least 6 characters" required minlength="6">
+        </div>
+        <div class="form-group">
+          <label for="role">I want to</label>
+          <select id="role" required>
+            <option value="customer">Order Food (Customer)</option>
+            <option value="vendor">Sell Food (Vendor)</option>
+          </select>
+        </div>
+
+        <div id="vendor-notice" class="alert alert-warning hidden" style="margin-bottom:16px;">
+          Vendor accounts require admin approval before you can access the vendor dashboard.
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg" style="width:100%;" id="register-btn">
+          Create Account
+        </button>
+      </form>
+
+      <div class="auth-footer">
+        Already have an account? <a href="/login.html">Sign in</a>
+      </div>
+    </div>
+  </main>
+
+  <script type="module">
+    import { renderNavbar } from "./js/app.js";
+    import { handleRegister, getAuthErrorMessage, redirectIfLoggedIn } from "./js/auth.js";
+
+    // Redirect if already logged in
+    await redirectIfLoggedIn();
+
+    renderNavbar(null);
+
+    const form = document.getElementById("register-form");
+    const errorAlert = document.getElementById("error-alert");
+    const registerBtn = document.getElementById("register-btn");
+    const roleSelect = document.getElementById("role");
+    const vendorNotice = document.getElementById("vendor-notice");
+
+    // Show vendor notice when vendor is selected
+    roleSelect.addEventListener("change", () => {
+      if (roleSelect.value === "vendor") {
+        vendorNotice.classList.remove("hidden");
+      } else {
+        vendorNotice.classList.add("hidden");
+      }
+    });
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      errorAlert.classList.add("hidden");
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const role = roleSelect.value;
+
+      if (!name || !email || !password) {
+        errorAlert.textContent = "Please fill in all fields.";
+        errorAlert.classList.remove("hidden");
+        return;
+      }
+
+      if (password.length < 6) {
+        errorAlert.textContent = "Password must be at least 6 characters.";
+        errorAlert.classList.remove("hidden");
+        return;
+      }
+
+      registerBtn.disabled = true;
+      registerBtn.textContent = "Creating account...";
+
+      try {
+        await handleRegister(name, email, password, role);
+      } catch (error) {
+        errorAlert.textContent = getAuthErrorMessage(error.code);
+        errorAlert.classList.remove("hidden");
+        registerBtn.disabled = false;
+        registerBtn.textContent = "Create Account";
+      }
+    });
+  </script>
+</body>
+</html>

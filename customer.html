@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Browse Foods - QuickBite</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loading-overlay">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar"></nav>
+
+  <main class="section" style="max-width:1200px; margin:0 auto;">
+    <div class="dashboard-header">
+      <h1>Browse Foods</h1>
+      <p>Discover delicious meals from top restaurants</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="browse-tab">Browse Menu</button>
+      <button class="tab-btn" data-tab="orders-tab">My Orders</button>
+    </div>
+
+    <!-- Browse Tab -->
+    <div class="tab-content active" id="browse-tab">
+      <!-- Search -->
+      <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Search for food...">
+      </div>
+
+      <!-- Categories -->
+      <div class="categories-scroll" id="categories" style="margin-bottom:24px;"></div>
+
+      <!-- Food Grid -->
+      <div class="food-grid" id="food-grid"></div>
+
+      <div class="empty-state hidden" id="empty-foods">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <h3>No foods found</h3>
+        <p>Try a different search or category.</p>
+      </div>
+    </div>
+
+    <!-- Orders Tab -->
+    <div class="tab-content" id="orders-tab">
+      <div id="orders-list">
+        <div class="empty-state">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <h3>Loading orders...</h3>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="./js/customer.js"></script>
+</body>
+</html>

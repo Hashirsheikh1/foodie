@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuickBite - Delicious Food Delivered Fast</title>
+    <meta
+      name="description"
+      content="Order delicious food from your favorite restaurants. Fast delivery, great prices."
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <!-- Loading Overlay -->
+    <!-- <div class="loading-overlay" id="loading-overlay">
+    <div class="spinner"></div>
+  </div> -->
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar"></nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <h1>Delicious Food,<br />Delivered Fast</h1>
+      <p>
+        Order from the best local restaurants with easy, on-demand delivery.
+      </p>
+      <div class="hero-search">
+        <input
+          type="text"
+          id="hero-search-input"
+          placeholder="Search for food or restaurants..."
+        />
+        <button id="hero-search-btn">Search</button>
+      </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories-section">
+      <h2 class="section-title">Browse by Category</h2>
+      <div class="categories-scroll" id="categories"></div>
+    </section>
+
+    <!-- Featured Foods -->
+    <section class="section">
+      <h2 class="section-title">Popular Right Now</h2>
+      <div class="food-grid" id="food-grid">
+        <!-- Populated dynamically -->
+      </div>
+      <div class="empty-state hidden" id="empty-foods">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+        >
+          <path
+            d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+          />
+        </svg>
+        <h3>No foods available yet</h3>
+        <p>Check back soon or log in as admin to seed sample data.</p>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="section">
+      <h2 class="section-title text-center">How It Works</h2>
+      <div
+        style="
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+          gap: 24px;
+          margin-top: 16px;
+        "
+      >
+        <div class="card" style="text-align: center; padding: 32px 20px">
+          <div
+            style="
+              width: 56px;
+              height: 56px;
+              border-radius: 50%;
+              background: rgba(255, 43, 133, 0.1);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin: 0 auto 16px;
+            "
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#FF2B85"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+          </div>
+          <h3 style="margin-bottom: 8px; font-size: 1.05rem">
+            Browse & Choose
+          </h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem">
+            Explore menus from top restaurants near you.
+          </p>
+        </div>
+        <div class="card" style="text-align: center; padding: 32px 20px">
+          <div
+            style="
+              width: 56px;
+              height: 56px;
+              border-radius: 50%;
+              background: rgba(255, 107, 53, 0.1);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin: 0 auto 16px;
+            "
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#FF6B35"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="9" cy="21" r="1" />
+              <circle cx="20" cy="21" r="1" />
+              <path
+                d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+              />
+            </svg>
+          </div>
+          <h3 style="margin-bottom: 8px; font-size: 1.05rem">
+            Place Your Order
+          </h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem">
+            Add items to your cart and check out easily.
+          </p>
+        </div>
+        <div class="card" style="text-align: center; padding: 32px 20px">
+          <div
+            style="
+              width: 56px;
+              height: 56px;
+              border-radius: 50%;
+              background: rgba(0, 184, 148, 0.1);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin: 0 auto 16px;
+            "
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#00B894"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
+          </div>
+          <h3 style="margin-bottom: 8px; font-size: 1.05rem">Fast Delivery</h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem">
+            Get your food delivered fresh to your door.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-inner">
+        <div class="footer-col">
+          <h4>QuickBite</h4>
+          <p style="font-size: 0.9rem; max-width: 260px">
+            Delicious food from the best restaurants, delivered to your doorstep
+            in minutes.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <a href="/index.html">Home</a>
+          <a href="/login.html">Login</a>
+          <a href="/register.html">Register</a>
+        </div>
+        <div class="footer-col">
+          <h4>Categories</h4>
+          <a href="#">Pizza</a>
+          <a href="#">Burgers</a>
+          <a href="#">Sushi</a>
+          <a href="#">Desserts</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        QuickBite &copy; 2026. All rights reserved.
+      </div>
+    </footer>
+
+    <script type="module">
+      import { dataStore } from "./js/dataStore.js";
+      import { checkAuthOptional } from "./js/auth-guard.js";
+      import {
+        renderNavbar,
+        showToast,
+        formatCurrency,
+        SAMPLE_CATEGORIES,
+        escapeHtml,
+        debounce,
+        renderToContainer,
+        updateCartBadge
+      } from "./js/app.js";
+
+      // State
+      let allFoods = [];
+      let activeCategory = "All";
+      let currentUser = null;
+
+      // Init
+      async function init() {
+        const overlay = document.getElementById("loading-overlay");
+
+        try {
+          // Wait for Firebase Auth to initialize
+          await dataStore.waitInit();
+          
+          const authData = await checkAuthOptional();
+          currentUser = authData.user;
+          renderNavbar(currentUser);
+          updateCartBadge();
+
+          // Seed sample data if empty
+          seedSampleData();
+
+          renderCategories();
+          setupSearch();
+          
+          allFoods = dataStore.getFoods();
+          renderFoodCards();
+
+          // Listen for changes
+          dataStore.subscribe((event) => {
+            if (event === "session_change") {
+                currentUser = dataStore.getCurrentUser();
+                renderNavbar(currentUser);
+            }
+            if (event === "cart_change" || event === "session_change") {
+              updateCartBadge();
+            }
+            if (event === "foods_change") {
+                allFoods = dataStore.getFoods();
+                renderFoodCards();
+            }
+          });
+        } catch (e) {
+          console.error("Init error:", e);
+        } finally {
+          if (overlay) overlay.classList.add("hidden");
+        }
+      }
+
+      function seedSampleData() {
+        const foods = dataStore.getFoods();
+        if (foods.length === 0) {
+          const sampleFoods = [
+            { name: "Margherita Pizza", price: 12.99, category: "Pizza", description: "Classic tomato and mozzarella", vendorId: "v1", vendorName: "Pizza Hut", rating: "4.5" },
+            { name: "Double Smash Burger", price: 10.50, category: "Burgers", description: "Two beef patties with secret sauce", vendorId: "v2", vendorName: "Burger King", rating: "4.8" },
+            { name: "Salmon Sushi Roll", price: 15.00, category: "Sushi", description: "Fresh salmon and avocado", vendorId: "v3", vendorName: "Sushi Zen", rating: "4.7" },
+            { name: "Kung Pao Chicken", price: 13.50, category: "Chinese", description: "Spicy chicken with peanuts", vendorId: "v4", vendorName: "China Express", rating: "4.4" }
+          ];
+          sampleFoods.forEach(f => dataStore.saveFood(f));
+        }
+      }
+
+      // Categories
+      function renderCategories() {
+        const container = document.getElementById("categories");
+        if (!container) return;
+        
+        const cats = ["All", ...SAMPLE_CATEGORIES];
+        const html = cats.map(cat => 
+          `<button class="category-pill ${cat === activeCategory ? "active" : ""}" data-category="${cat}">${cat}</button>`
+        ).join("");
+        
+        renderToContainer(container, html);
+
+        container.onclick = (e) => {
+          const pill = e.target.closest(".category-pill");
+          if (!pill) return;
+          
+          activeCategory = pill.dataset.category;
+          container.querySelectorAll(".category-pill").forEach(p => p.classList.remove("active"));
+          pill.classList.add("active");
+          renderFoodCards();
+        };
+      }
+
+      // Foods
+      function getCategoryIcon(category) {
+        const icons = {
+          Pizza: "&#127829;", Burgers: "&#127828;", Sushi: "&#127843;",
+          Chinese: "&#129379;", Indian: "&#127835;", Desserts: "&#127856;",
+          Drinks: "&#127860;", Healthy: "&#129367;"
+        };
+        return icons[category] || "&#127860;";
+      }
+
+      function renderFoodCards() {
+        const grid = document.getElementById("food-grid");
+        const empty = document.getElementById("empty-foods");
+        const searchInput = document.getElementById("hero-search-input");
+        const searchTerm = searchInput ? searchInput.value.toLowerCase() : "";
+
+        const filteredFoods = allFoods.filter(f => {
+          const matchesCategory = activeCategory === "All" || f.category === activeCategory;
+          const matchesSearch = !searchTerm || 
+            f.name.toLowerCase().includes(searchTerm) || 
+            f.description.toLowerCase().includes(searchTerm) ||
+            f.category.toLowerCase().includes(searchTerm);
+          return matchesCategory && matchesSearch;
+        });
+
+        if (filteredFoods.length === 0) {
+          grid.innerHTML = "";
+          empty.classList.remove("hidden");
+          return;
+        }
+
+        empty.classList.add("hidden");
+        
+        const html = filteredFoods.map(food => `
+          <div class="card">
+            <div class="card-img" style="display:flex;align-items:center;justify-content:center;font-size:3rem;">
+              ${getCategoryIcon(food.category)}
+            </div>
+            <div class="card-body">
+              <div class="card-title">${escapeHtml(food.name)}</div>
+              <div class="card-subtitle">${escapeHtml(food.vendorName || "Restaurant")}</div>
+              <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:10px;">${escapeHtml(food.description)}</p>
+              <div class="card-footer">
+                <span class="card-price">${formatCurrency(food.price)}</span>
+                <span class="card-rating">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  ${food.rating || "4.0"}
+                </span>
+              </div>
+              <button class="btn btn-primary btn-sm add-to-cart-btn" style="width:100%; margin-top:12px;" data-id="${food.id}">
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        `).join("");
+        
+        renderToContainer(grid, html);
+
+        // Add event listeners for buttons
+        grid.querySelectorAll(".add-to-cart-btn").forEach(btn => {
+          btn.onclick = () => {
+            if (!currentUser) {
+              showToast("Please login to add items to cart", "info");
+              setTimeout(() => window.location.href = "/login.html", 1000);
+              return;
+            }
+            if (currentUser.role !== "customer") {
+              showToast("Only customers can order food", "error");
+              return;
+            }
+            
+            const food = allFoods.find(f => f.id === btn.dataset.id);
+            if (food) {
+                dataStore.addToCart(currentUser.uid, food);
+                showToast("Added to cart!", "success");
+            }
+          };
+        });
+      }
+
+      // Search
+      function setupSearch() {
+        const btn = document.getElementById("hero-search-btn");
+        const input = document.getElementById("hero-search-input");
+        
+        if (btn) btn.onclick = renderFoodCards;
+        if (input) {
+          input.oninput = debounce(renderFoodCards, 300);
+          input.onkeypress = (e) => {
+            if (e.key === "Enter") renderFoodCards();
+          };
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", init);
+    </script>
+
+
+  </body>
+</html>
