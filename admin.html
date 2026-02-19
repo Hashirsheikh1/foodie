@@ -1,110 +1,175 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard - QuickBite</title>
-  <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-  <!-- Loading Overlay -->
-  <div class="loading-overlay" id="loading-overlay">
-    <div class="spinner"></div>
-  </div>
-
-  <!-- Navbar -->
-  <nav class="navbar" id="navbar"></nav>
-
-  <main class="section" style="max-width:1200px; margin:0 auto;">
-    <div class="dashboard-header flex-between" style="flex-wrap:wrap; gap:16px;">
-      <div>
-        <h1>Admin Dashboard</h1>
-        <p>Manage users, vendors, and orders</p>
-      </div>
-      <button class="btn btn-secondary" id="seed-btn">Seed Sample Foods</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard - QuickBite</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+      <div class="spinner"></div>
     </div>
 
-    <!-- Stats -->
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-icon pink">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar"></nav>
+
+    <main class="section" style="max-width: 1200px; margin: 0 auto">
+      <div
+        class="dashboard-header flex-between"
+        style="flex-wrap: wrap; gap: 16px"
+      >
+        <div>
+          <h1>Admin Dashboard</h1>
+          <p>Manage users, vendors, and orders</p>
         </div>
-        <div class="stat-label">Total Users</div>
-        <div class="stat-value" id="stat-users">0</div>
+        <button class="btn btn-secondary" id="seed-btn">
+          Seed Sample Foods
+        </button>
       </div>
-      <div class="stat-card">
-        <div class="stat-icon orange">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon pink">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+          </div>
+          <div class="stat-label">Total Users</div>
+          <div class="stat-value" id="stat-users">0</div>
         </div>
-        <div class="stat-label">Vendors</div>
-        <div class="stat-value" id="stat-vendors">0</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon blue">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        <div class="stat-card">
+          <div class="stat-icon orange">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+            </svg>
+          </div>
+          <div class="stat-label">Vendors</div>
+          <div class="stat-value" id="stat-vendors">0</div>
         </div>
-        <div class="stat-label">Total Orders</div>
-        <div class="stat-value" id="stat-orders">0</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon green">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <div class="stat-card">
+          <div class="stat-icon blue">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <rect x="1" y="3" width="15" height="13" />
+              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+              <circle cx="5.5" cy="18.5" r="2.5" />
+              <circle cx="18.5" cy="18.5" r="2.5" />
+            </svg>
+          </div>
+          <div class="stat-label">Total Orders</div>
+          <div class="stat-value" id="stat-orders">0</div>
         </div>
-        <div class="stat-label">Revenue</div>
-        <div class="stat-value" id="stat-revenue">$0.00</div>
+        <div class="stat-card">
+          <div class="stat-icon green">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="12" y1="1" x2="12" y2="23" />
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+            </svg>
+          </div>
+          <div class="stat-label">Revenue</div>
+          <div class="stat-value" id="stat-revenue">$0.00</div>
+        </div>
       </div>
-    </div>
 
-    <!-- Tabs -->
-    <div class="tabs">
-      <button class="tab-btn active" data-tab="users-tab">Users</button>
-      <button class="tab-btn" data-tab="orders-tab">Orders</button>
-    </div>
-
-    <!-- Users Tab -->
-    <div class="tab-content active" id="users-tab">
-      <div class="table-wrapper">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Role</th>
-              <th>Status</th>
-              <th>Joined</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody id="users-table-body">
-            <tr><td colspan="6" class="text-center" style="padding:40px;color:var(--text-secondary);">Loading users...</td></tr>
-          </tbody>
-        </table>
+      <!-- Tabs -->
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="users-tab">Users</button>
+        <button class="tab-btn" data-tab="orders-tab">Orders</button>
       </div>
-    </div>
 
-    <!-- Orders Tab -->
-    <div class="tab-content" id="orders-tab">
-      <div class="table-wrapper">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Order ID</th>
-              <th>Customer</th>
-              <th>Items</th>
-              <th>Total</th>
-              <th>Status</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody id="orders-table-body">
-            <tr><td colspan="6" class="text-center" style="padding:40px;color:var(--text-secondary);">Loading orders...</td></tr>
-          </tbody>
-        </table>
+      <!-- Users Tab -->
+      <div class="tab-content active" id="users-tab">
+        <div class="table-wrapper">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Joined</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="users-table-body">
+              <tr>
+                <td
+                  colspan="6"
+                  class="text-center"
+                  style="padding: 40px; color: var(--text-secondary)"
+                >
+                  Loading users...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
-  </main>
 
-  <script type="module" src="./js/admin.js"></script>
-</body>
+      <!-- Orders Tab -->
+      <div class="tab-content" id="orders-tab">
+        <div class="table-wrapper">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Customer</th>
+                <th>Items</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="orders-table-body">
+              <tr>
+                <td
+                  colspan="6"
+                  class="text-center"
+                  style="padding: 40px; color: var(--text-secondary)"
+                >
+                  Loading orders...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <script type="module" src="./js/admin.js"></script>
+  </body>
 </html>
